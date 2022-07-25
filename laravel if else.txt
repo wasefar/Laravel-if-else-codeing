@@ -1,0 +1,23 @@
+ @if(removeEmptyTags($cat->details))
+                    <div class="menu_details mb-10">
+                        {!! removeEmptyTags($cat->details) !!}
+                    </div>
+                  @endif
+
+
+
+
+laravel if else
+
+@if($user->status =='waiting')         
+      <td><a href="#" class="viewPopLink btn btn-default1" role="button" data-id="{{ $user->travel_id }}" data-toggle="modal" data-target="#myModal">Approve/Reject<a></td>         
+@else
+      <td>{{ $user->status }}</td>        
+@endif
+
+
+<img class="img-fluid" src="{{ ruImage( $homeBlock->image , 600, 0) }}" alt="about-image">
+
+<div class="abox-4-ico"><img src="{{ ruImage($promo['image'], 98, 99) }}" alt="promo"></div>
+
+

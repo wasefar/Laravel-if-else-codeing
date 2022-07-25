@@ -1,0 +1,99 @@
+
+@extends('frontend/mainLayout')
+
+@section('head')
+<title>{{ $page->seo_title }}</title>
+
+<meta name="keywords" content="{{ $page->seo_keyword }}">
+<meta name="description" content="{{ $page->seo_details }}"/>
+@endsection
+
+
+
+@php
+    
+    $backgroundColor = $page->backgroundColor ? '#'.$page->backgroundColor : '#000';
+    $backgroundImage = 'https://i.postimg.cc/7hsnG9fF/details-bg-page.jpg';
+    $backgroundImagePosition = $page->backgroundImagePosition ? $page->backgroundImagePosition : 'center';
+    $backgroundImageSize = $page->backgroundImageSize ? $page->backgroundImageSize : 'cover';
+    $backgroundImageRepeat = $page->backgroundImageRepeat ? $page->backgroundImageRepeat : 'no-repeat';
+    $textHeadingColor = $page->textHeadingColor ? '#'.$page->textHeadingColor : 'f39200';
+    $textDetailsColor = $page->textDetailsColor ? '#'.$page->textDetailsColor : '#fff';
+    $textBorderColor = '';
+
+
+@endphp
+
+
+
+
+@section('body')
+
+
+<style>
+
+.site-content {
+    background-color: {{ $backgroundColor }};
+    /*background-image: url('{{ $backgroundImage }}');*/
+    background-position: {{ $backgroundImagePosition }};
+    background-size: {{ $backgroundImageSize }};
+    background-repeat: {{ $backgroundImageRepeat }};
+}
+
+.about-ctas-right__bgblank p, 
+div#video_gallery_item h4 {
+  color: {{ $textDetailsColor }};
+}
+.about-ctas-right__bgblank p.title {
+    color: {{ $textHeadingColor }};
+    
+}
+
+</style>
+
+
+@if(isset($page->banner_video))
+<div class="video_breadcrumb_sc child-hero_ hero-about-us">
+   <video class="jsLazyVideo" id="myVideo" loop="loop" autoplay="" playsinline="" muted="" data-src="{{ asset('videos/'.$page->banner_video) }}">
+     <source class="jsLazyVideo" data-src="{{ asset('videos/'.$page->banner_video) }}" type="video/mp4">
+   </video>
+    <!-- <div class="video_content">
+      <h1>{{ $page->title }}</h1>
+    </div> -->
+</div> 
+@else
+<div class="child-hero hero-about-us">
+    <div class="container">
+       <div class="child-hero-content">
+          <p class="hero-text trms_condition">{{ $page->title }}</p>
+       </div>
+    </div>
+ </div> 
+
+ @endif
+
+
+@if($page->details || $page->sub_title)
+    <main role="main" class="site-content">	
+        <article class="grid grid8_12">
+            <div class="pad-1-1 copy">
+                @if($page->sub_title)
+                <h1>{{ $page->sub_title }}</h1>
+                @endif
+
+                {!! $page->details !!}
+
+                <div class="clearfix"></div>
+            </div>
+        </article>
+    </main>
+@endif
+
+{!! $module !!}
+
+
+@endsection
+
+@section('footer')
+
+@endsection
