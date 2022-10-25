@@ -1,0 +1,5 @@
+style csss laravel if else code-----
+style="background-image: url('{{ ruImage($page->image ? $page->image : $settings['page_bg'], 1920, 0) }}')" 
+
+style csss laravel if  code-----
+@if($page->background_image) style="background-image: url('{{ ruImage($page->background_image, 1920, 0) }}')" @endif
